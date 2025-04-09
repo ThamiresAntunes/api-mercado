@@ -12,3 +12,9 @@ datasource db {
   provider = "sqlite"
   url      = "file:./db.sqlite"
 }
+
+model Produto {
+  codigo String @id @default(uuid())
+  nome   String
+  preco  Float
+}
