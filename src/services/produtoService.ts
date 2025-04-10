@@ -17,4 +17,15 @@ export const criarProduto = async (data: Produto) => {
     }
 }
 
+export const listarProdutos = async () => {
+    try{
+        return await prisma.produto.findMany();
+    }
+    catch(error){
+        console.log(error);
+        return null;
+    }
+}
+
+
 
