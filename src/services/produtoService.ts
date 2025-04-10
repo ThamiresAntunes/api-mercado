@@ -15,6 +15,6 @@ export const criarProduto = async (data: Produto) => {
         console.log(error);
         return null;
     }
-    
 }
+
 
