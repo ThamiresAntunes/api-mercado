@@ -22,4 +22,3 @@ export const listar = async (requisicao: Request, resposta: Response) => {
     return;
 }
 
-

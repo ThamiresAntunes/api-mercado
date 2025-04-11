@@ -27,5 +27,22 @@ export const listarProdutos = async () => {
     }
 }
 
-
+export const atualizarProduto = async (data: Produto, codigo: number) => {
+    try{
+        return await prisma.produto.update({
+            where: {
+                //colunaDoBanco: informacao obtida pela requisicao
+                codigo: codigo
+            },
+            data: {
+                nome: data.nome,
+                preco: data.preco, 
+            }
+        })
+    }
+    catch(error){
+        console.log(error);
+        return null;
+    }
+}
 
