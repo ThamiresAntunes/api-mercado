@@ -28,7 +28,7 @@ export const atualizar = async (requisicao: Request, resposta: Response) => {
         resposta.status(200).json(produtoAtualizado);
         return;
     }
-    resposta.status(404).json({erro: "Erro ao atualizar produtos"});
+    resposta.status(500).json({erro: "Erro ao atualizar produtos"});
     return;
 }
 
