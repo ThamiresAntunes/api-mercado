@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { criarProduto, listarProdutos, atualizarProduto } from "../services/produtoService";
+import { criarProduto, listarProdutos, atualizarProduto, deletarProduto } from "../services/produtoService";
 
 export const criar = async (requisicao: Request, resposta: Response) => {
     //produto armazena os dados de um produto que foi passado no body da requisicao
@@ -28,7 +28,16 @@ export const atualizar = async (requisicao: Request, resposta: Response) => {
         resposta.status(200).json(produtoAtualizado);
         return;
     }
-    resposta.status(500).json({erro: "Erro ao atualizar produtos"});
+    resposta.status(500).json({erro: "Erro ao atualizar produto"});
     return;
 }
 
+export const deletar = async (requisicao: Request, resposta: Response) => {
+    const produtoRemovido = await deletarProduto(Number(requisicao.params.codigo));
+    if(produtoRemovido){
+        resposta.status(200).json(produtoRemovido);
+        return;
+    }
+    resposta.status(500).json({erro: "Erro ao remover produto"});
+    return;
+}
