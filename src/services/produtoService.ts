@@ -27,6 +27,21 @@ export const listarProdutos = async () => {
     }
 }
 
+
+export const verProduto = async (codigo: number) => {
+    try{
+        return prisma.produto.findUnique({
+            where:{
+                codigo: codigo
+            }
+        });
+    }
+    catch(error){
+        console.log(error);
+        return null;
+    }
+}
+
 export const atualizarProduto = async (data: Produto, codigo: number) => {
     try{
         return await prisma.produto.update({
