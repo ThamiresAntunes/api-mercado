@@ -46,3 +46,16 @@ export const atualizarProduto = async (data: Produto, codigo: number) => {
     }
 }
 
+export const deletarProduto = async (codigo: number) => {
+    try{
+        return await prisma.produto.delete({
+            where: {
+                codigo: codigo
+            }
+        })
+    }
+    catch(error){
+        console.log(error);
+        return null;
+    }
+}
