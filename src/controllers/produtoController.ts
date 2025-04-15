@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { criarProduto, listarProdutos, atualizarProduto, deletarProduto } from "../services/produtoService";
+import { criarProduto, listarProdutos, atualizarProduto, deletarProduto, verProduto } from "../services/produtoService";
 
 export const criar = async (requisicao: Request, resposta: Response) => {
     //produto armazena os dados de um produto que foi passado no body da requisicao
@@ -19,6 +19,16 @@ export const listar = async (requisicao: Request, resposta: Response) => {
         return;
     }
     resposta.status(404).json({erro: "A lista de produtos esta vazia"});
+    return;
+}
+
+export const listarIndividual = async(requisicao: Request, resposta: Response) => {
+    const produtoRetornado = await verProduto(Number(requisicao.params.codigo));
+    if(produtoRetornado !== null){
+        resposta.status(200).json(produtoRetornado);
+        return;
+    }
+    resposta.status(404).json({erro: "Produto nao encontrado!"});
     return;
 }
 
